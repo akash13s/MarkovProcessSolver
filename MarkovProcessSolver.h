@@ -47,101 +47,6 @@ private:
     double tolerance;
     bool maximise, correctInputFormat;
 
-    void readFile(string inputFile) {
-
-        // write the logic for parsing the input file
-
-        /*
-         *
-         * # maze example from class slides
-
-            Z=1
-            Y=-1
-            A : [Z, C, Y]
-            A % .8
-            B : [Z, C, E]
-            B % .8
-            C : [A, B, D, F]
-            C % .8
-            D : [C, Y, G]
-            D % .8
-            E : [F, B]
-            E % .8
-            F : [E, C, G]
-            F % .8
-            G : [D, F]
-            G % .8
-         */
-//        vector<string> A = {"Z", "C", "Y"};
-//        vector<string> B = {"Z", "C", "E"};
-//        vector<string> C = {"A", "B", "D", "F"};
-//        vector<string> D = {"C", "Y", "G"};
-//        vector<string> E = {"F", "B"};
-//        vector<string> F = {"E", "C", "G"};
-//        vector<string> G = {"D", "F"};
-//
-//        adj["A"] = A;
-//        adj["B"] = B;
-//        adj["C"] = C;
-//        adj["D"] = D;
-//        adj["E"] = E;
-//        adj["F"] = F;
-//        adj["G"] = G;
-//
-//        prob["A"] = vector<double> {0.8};
-//        prob["B"] = vector<double> {0.8};
-//        prob["C"] = vector<double> {0.8};
-//        prob["D"] = vector<double> {0.8};
-//        prob["E"] = vector<double> {0.8};
-//        prob["F"] = vector<double> {0.8};
-//        prob["G"] = vector<double> {0.8};
-//
-//        reward["Z"] = 1;
-//        reward["Y"] = -1;
-
-        /*
-         * # The publisher decision tree
-            S : [Reject, Publish, Consult]
-            S % 1
-            Reject=0
-            Publish : [Success, Failure]
-            Publish % .2 .8
-            Success=50000
-            Failure=-10000
-            Consult=-500
-            Consult : [For, Against]
-            Consult % .46 .54
-            Against=0
-            For : [Success, Failure]
-            For % .3 .7
-         */
-
-        vector<string> S = {"Reject", "Publish", "Consult"};
-        vector<string> Publish = {"Success", "Failure"};
-        vector<string> Consult = {"For", "Against"};
-        vector<string> For = {"Success", "Failure"};
-        adj["S"] = S;
-        adj["Publish"] = Publish;
-        adj["Consult"] = Consult;
-        adj["For"] = For;
-
-        prob["S"] = vector<double> {1.0};
-        prob["Publish"] = vector<double> {0.2, 0.8};
-        prob["Consult"] = vector<double> {0.46, 0.54};
-        prob["For"] = vector<double> {0.3, 0.7};
-
-        reward["Reject"] = 0;
-        reward["Success"] = 50000;
-        reward["Failure"] = -10000;
-        reward["Consult"] = -500;
-        reward["Against"] = 0;
-
-        iterations = 100;
-        tolerance = 0.001;
-        discountFactor = 1;
-        maximise = true;
-    }
-
     void init() {
 
         //mark decision nodes
@@ -340,7 +245,7 @@ private:
         printPolicyAndValues();
     }
 
-    void readFileV2(string inputFile) {
+    void readFile(string inputFile) {
         correctInputFormat = true;
         ifstream file(inputFile);
         string line;
@@ -428,7 +333,7 @@ public:
         this->iterations = arguments->iterations;
         this->maximise = arguments->maximise;
         this->discountFactor = arguments->discountFactor;
-        readFileV2(arguments->inputFile);
+        readFile(arguments->inputFile);
         // initialise policies and rewards
         init();
     }
