@@ -241,7 +241,6 @@ private:
             }
         }
 
-        cout<<"Iterations: "<<i<<endl;
         printPolicyAndValues();
     }
 
@@ -335,11 +334,17 @@ public:
         this->discountFactor = arguments->discountFactor;
         readFile(arguments->inputFile);
         // initialise policies and rewards
-        init();
+        if (correctInputFormat) {
+            init();
+        }
     }
 
     void solve() {
-        markovProcessSolver();
+        if (correctInputFormat) {
+            markovProcessSolver();
+        } else {
+            cout<<"Cannot run markov process solver as input file format is not correct"<<endl;
+        }
     }
 };
 

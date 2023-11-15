@@ -21,7 +21,12 @@ void readCommandLineArguments(int argc, char *argv[], ProgramArguments *argument
             if (i+1<argc) {
                 arguments->tolerance = stod(argv[i+1]);
             }
-        } else if (arg.length() >= inputFileExtension.length() &&
+        } else if (arg == "-iter") {
+            if (i+1<argc) {
+                arguments->iterations = stoi(argv[i+1]);
+            }
+        }
+        else if (arg.length() >= inputFileExtension.length() &&
                    arg.substr(arg.length() - inputFileExtension.length()) == inputFileExtension) {
             arguments->inputFile = arg;
         }
