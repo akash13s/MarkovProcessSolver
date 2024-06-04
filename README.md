@@ -1,7 +1,5 @@
 ### How to run the program
 
->After you are in the directory which contains the MarkovProcessSolver.cpp and MarkovProcessSolver.h files, run the following compile and run commands
-
 ```
 Compile command: g++ --std=c++11 MarkovProcessSolver.cpp
 Run commands: (different examples)
